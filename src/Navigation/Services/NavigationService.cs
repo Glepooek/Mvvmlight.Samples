@@ -8,7 +8,7 @@ using System.Windows.Media;
 
 namespace Navigation.Services
 {
-    public class NavigationService : ViewModelBase, INavigationService
+    public class NavigationService : ViewModelBase, IFrameNavigationService
     {
         #region Constructor
 
@@ -44,7 +44,7 @@ namespace Navigation.Services
             }
         }
 
-        public object Parameter { get; private set; }
+        public object Parameter { get; set; }
 
         #endregion
 
@@ -57,6 +57,17 @@ namespace Navigation.Services
                 mGoback = true;
                 mBackStack.Pop();
                 NavigateTo(mBackStack.Peek());
+                mGoback = false;
+            }
+        }
+
+        public void GoBack(object parameter)
+        {
+            if (mBackStack.Count > 1)
+            {
+                mGoback = true;
+                mBackStack.Pop();
+                NavigateTo(mBackStack.Peek(), parameter);
                 mGoback = false;
             }
         }

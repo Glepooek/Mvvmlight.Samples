@@ -1,6 +1,5 @@
 ﻿using CommonServiceLocator;
 using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
 using Navigation.Services;
 using System;
 
@@ -19,17 +18,15 @@ namespace Navigation.ViewModels
             SimpleIoc.Default.Register<PageOneViewModel>();
             SimpleIoc.Default.Register<PageTwoViewModel>();
             SimpleIoc.Default.Register<PageThreeViewModel>();
-
-            SimpleIoc.Default.Register<INavigationService>(
-                () => CreateNavigationService());
+            SimpleIoc.Default.Register(() => CreateNavigationService());
         }
 
-        private static INavigationService CreateNavigationService()
+        private static IFrameNavigationService CreateNavigationService()
         {
             var navigationService = new NavigationService();
-            navigationService.Configure("Page1", new Uri("/Navigation;component/Views/PageOne.xaml", UriKind.Relative));
-            navigationService.Configure("Page2", new Uri("/Navigation;component/Views/PageTwo.xaml", UriKind.Relative));
-            navigationService.Configure("Page3", new Uri("/Navigation;component/Views/PageThree.xaml", UriKind.Relative));
+            navigationService.Configure(PageKeyConstant.PageOne, new Uri("/Navigation;component/Views/PageOne.xaml", UriKind.Relative));
+            navigationService.Configure(PageKeyConstant.PageTwo, new Uri("/Navigation;component/Views/PageTwo.xaml", UriKind.Relative));
+            navigationService.Configure(PageKeyConstant.PageThree, new Uri("/Navigation;component/Views/PageThree.xaml", UriKind.Relative));
             return navigationService;
         }
 

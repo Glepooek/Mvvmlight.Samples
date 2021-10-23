@@ -2,31 +2,51 @@
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
+using Navigation.Services;
 using System.Windows.Input;
 
 namespace Navigation.ViewModels
 {
     public class PageThreeViewModel : ViewModelBase
     {
-        public PageThreeViewModel()
+        #region Constructor
+
+        public PageThreeViewModel(IFrameNavigationService navigationService)
         {
+            mNavigationService = navigationService;
             InitCommands();
         }
 
+        #endregion
+
+        #region Fields
+
+        private IFrameNavigationService mNavigationService;
+
+        #endregion
+
+        #region Commands
+
         public ICommand GoBackCommand { get; private set; }
         public ICommand GoForwardCommand { get; private set; }
+        public ICommand ViewLoadedCommand { get; private set; }
 
         private void InitCommands()
         {
             GoBackCommand = new RelayCommand(() =>
             {
-                var navigation = SimpleIoc.Default.GetInstance<INavigationService>();
-                navigation.GoBack();
+                mNavigationService.GoBack();
             });
             GoForwardCommand = new RelayCommand(() =>
             {
-                
+
+            });
+            ViewLoadedCommand = new RelayCommand(() =>
+            {
+                var temp = mNavigationService.Parameter;
             });
         }
+
+        #endregion
     }
 }

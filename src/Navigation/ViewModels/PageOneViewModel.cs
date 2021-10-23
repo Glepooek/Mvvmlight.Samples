@@ -1,32 +1,41 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
+using Navigation.Services;
 using System.Windows.Input;
 
 namespace Navigation.ViewModels
 {
-    public class PageOneViewModel: ViewModelBase
+    public class PageOneViewModel : ViewModelBase
     {
-        public PageOneViewModel()
+        #region Constructor
+
+        public PageOneViewModel(IFrameNavigationService navigationService)
         {
+            mNavigationService = navigationService;
             InitCommands();
         }
 
-        public ICommand GoBackCommand { get; private set; }
+        #endregion
+
+        #region Fields
+
+        private INavigationService mNavigationService;
+
+        #endregion
+
+        #region Commands
+
         public ICommand GoForwardCommand { get; private set; }
 
         private void InitCommands()
         {
-            GoBackCommand = new RelayCommand(()=>
-            { 
-            
-            });
             GoForwardCommand = new RelayCommand(() =>
             {
-                var navigation = SimpleIoc.Default.GetInstance<INavigationService>();
-                navigation.NavigateTo("Page2");
+                mNavigationService.NavigateTo(PageKeyConstant.PageTwo, new string[] { "I", "love", "you" });
             });
         }
+
+        #endregion
     }
 }

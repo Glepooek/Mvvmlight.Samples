@@ -21,10 +21,5 @@
             Height="32"
             Command="{Binding GoForwardCommand}"
             Content="GoForward" />
-        <Button
-            Width="100"
-            Height="32"
-            Command="{Binding GoBackCommand}"
-            Content="GoBack" />
     </StackPanel>
 </Page>

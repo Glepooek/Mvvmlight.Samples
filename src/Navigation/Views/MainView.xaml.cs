@@ -1,5 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
+using Navigation.Services;
 using System.Windows;
 
 namespace Navigation.Views
@@ -14,8 +14,8 @@ namespace Navigation.Views
             InitializeComponent();
             this.Loaded += (sender, args) =>
             {
-                var navigation = SimpleIoc.Default.GetInstance<INavigationService>();
-                navigation.NavigateTo("Page1");
+                var navigation = SimpleIoc.Default.GetInstance<IFrameNavigationService>();
+                navigation.NavigateTo(PageKeyConstant.PageOne);
             };
         }
     }
