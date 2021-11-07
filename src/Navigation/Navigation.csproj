@@ -73,7 +73,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\IFrameNavigationService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\PageKeyConstant.cs" />
