@@ -50,7 +50,6 @@ namespace Dialog.ViewModels
         public ICommand ShowMessageBoxWithIconCommand { get; private set; }
         public ICommand ShowMessageBoxWithDefaultResultCommand { get; private set; }
 
-
         private void InitCommands()
         {
             GoForwardCommand = new RelayCommand(() =>

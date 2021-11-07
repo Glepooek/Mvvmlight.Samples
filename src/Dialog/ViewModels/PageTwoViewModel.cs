@@ -44,7 +44,6 @@ namespace Dialog.ViewModels
         public ICommand ImplicitShowDialogCommand { get; private set; }
         public ICommand ExplicitShowDialogCommand { get; private set; }
 
-
         private void InitCommands()
         {
             GoBackCommand = new RelayCommand(() =>
