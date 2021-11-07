@@ -2,6 +2,10 @@
 using GalaSoft.MvvmLight.Command;
 using Dialog.Services;
 using System.Windows.Input;
+using System;
+using System.Collections.ObjectModel;
+using MvvmDialogs;
+using Dialog.DialogViews;
 
 namespace Dialog.ViewModels
 {
@@ -9,9 +13,11 @@ namespace Dialog.ViewModels
     {
         #region Constructor
 
-        public PageTwoViewModel(IFrameNavigationService navigationService)
+        public PageTwoViewModel(IFrameNavigationService navigationService, IDialogService dialogService)
         {
             mNavigationService = navigationService;
+            mDialogService = dialogService;
+
             InitCommands();
         }
 
@@ -19,7 +25,14 @@ namespace Dialog.ViewModels
 
         #region Fields
 
-        private IFrameNavigationService mNavigationService;
+        private readonly IFrameNavigationService mNavigationService;
+        private readonly IDialogService mDialogService;
+
+        #endregion
+
+        #region Properties
+
+        public ObservableCollection<string> Texts { get; } = new ObservableCollection<string>();
 
         #endregion
 
@@ -28,6 +41,9 @@ namespace Dialog.ViewModels
         public ICommand GoBackCommand { get; private set; }
         public ICommand GoForwardCommand { get; private set; }
         public ICommand ViewLoadedCommand { get; private set; }
+        public ICommand ImplicitShowDialogCommand { get; private set; }
+        public ICommand ExplicitShowDialogCommand { get; private set; }
+
 
         private void InitCommands()
         {
@@ -43,6 +59,29 @@ namespace Dialog.ViewModels
             {
                 var temp = mNavigationService.Parameter;
             });
+            ImplicitShowDialogCommand = new RelayCommand(() =>
+            {
+                ShowDialog(viewModel => mDialogService.ShowDialog(this, viewModel));
+            });
+            ExplicitShowDialogCommand = new RelayCommand(() =>
+            {
+                ShowDialog(viewModel => mDialogService.ShowDialog<AddTextDialog>(this, viewModel));
+            });
+        }
+
+        #endregion
+
+        #region Methods
+
+        private void ShowDialog(Func<AddTextDialogViewModel, bool?> showDialog)
+        {
+            var dialogViewModel = new AddTextDialogViewModel();
+
+            bool? success = showDialog(dialogViewModel);
+            if (success == true)
+            {
+                Texts.Add(dialogViewModel.Text);
+            }
         }
 
         #endregion

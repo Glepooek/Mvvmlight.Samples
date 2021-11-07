@@ -2,6 +2,7 @@
 using GalaSoft.MvvmLight.Ioc;
 using Dialog.Services;
 using System;
+using Dialog.Customs;
 using MvvmDialogs;
 
 namespace Dialog.ViewModels
@@ -15,12 +16,14 @@ namespace Dialog.ViewModels
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
+            SimpleIoc.Default.Register(() => CreateNavigationService());
+            SimpleIoc.Default.Register<IDialogService>(() => new DialogService());
+            //SimpleIoc.Default.Register<IDialogService>(() => new DialogService(frameworkDialogFactory: new CustomFrameworkDialogFactory()));
+
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<PageOneViewModel>();
             SimpleIoc.Default.Register<PageTwoViewModel>();
             SimpleIoc.Default.Register<PageThreeViewModel>();
-            SimpleIoc.Default.Register(() => CreateNavigationService());
-            SimpleIoc.Default.Register<IDialogService>(() => new DialogService());
         }
 
         private static IFrameNavigationService CreateNavigationService()
