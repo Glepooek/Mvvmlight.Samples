@@ -1,8 +1,6 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Dialog.Services;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
-using GalaSoft.MvvmLight.Views;
-using Dialog.Services;
 using System.Windows.Input;
 
 namespace Dialog.ViewModels

@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Views;
 using System;
 using System.Collections.Generic;
 using System.Windows;

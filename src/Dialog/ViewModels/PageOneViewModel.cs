@@ -1,10 +1,10 @@
-﻿using GalaSoft.MvvmLight;
+﻿using Dialog.Services;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
-using Dialog.Services;
-using System.Windows.Input;
-using System.Windows;
 using System;
+using System.Windows;
+using System.Windows.Input;
 
 namespace Dialog.ViewModels
 {
@@ -74,7 +74,7 @@ namespace Dialog.ViewModels
                 UpdateResult(result);
             });
 
-            ShowMessageBoxWithButtonCommand = new RelayCommand(() => 
+            ShowMessageBoxWithButtonCommand = new RelayCommand(() =>
             {
                 MessageBoxResult result = mDialogService.ShowMessageBox(
                     this,
@@ -97,7 +97,7 @@ namespace Dialog.ViewModels
                 UpdateResult(result);
             });
 
-            ShowMessageBoxWithDefaultResultCommand = new RelayCommand(() => 
+            ShowMessageBoxWithDefaultResultCommand = new RelayCommand(() =>
             {
                 MessageBoxResult result = mDialogService.ShowMessageBox(
                     this,

@@ -1,5 +1,5 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using Dialog.Services;
+﻿using Dialog.Services;
+using GalaSoft.MvvmLight.Ioc;
 using System.Windows;
 
 namespace Dialog.Views

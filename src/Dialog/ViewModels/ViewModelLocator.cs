@@ -1,9 +1,8 @@
 ﻿using CommonServiceLocator;
-using GalaSoft.MvvmLight.Ioc;
 using Dialog.Services;
-using System;
-using Dialog.Customs;
+using GalaSoft.MvvmLight.Ioc;
 using MvvmDialogs;
+using System;
 
 namespace Dialog.ViewModels
 {
